@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Server</title>
+
+    <!-- CSS (load bootstrap from a CDN) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body { padding-top:50px; }
+    </style>
+</head>
+<body class="container">
+
+<main>
+    <div class="test">
+        <form method="GET" id="music-search">
+            <input type="text" name="q" placeholder="Enter a video">
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+    <div class="videos">
+        <% if (locals.videos) { %>
+            <h2>Here are some videos</h2>
+            <% videos.forEach(function(video) { %>
+                <div class="video">
+                    <h3>Title:<%= video.snippet.title %></h3>
+                    <p>Video ID: <%= video.id.videoId %> </p>
+                    <img src="<%= video.snippet.thumbnails.default.url %>" alt="">
+                    <a href="/api/videos/<%= video.id.videoId %>">Download video</a>
+                </div>
+            <% }); %>
+        <% } %>
+    </div>
+</main>
+
+</body>
+</html>
